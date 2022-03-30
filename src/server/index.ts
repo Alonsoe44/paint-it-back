@@ -1,16 +1,12 @@
-const debug = require("debug")("painting-app:serverStart");
+require("dotenv").config();
+const cors = require("cors");
+const express = require("express");
+const morgan = require("morgan");
 
-const startServer = (app, port) =>
-  new Promise<void>((resolve, reject): void => {
-    const server = app.listen(port, () => {
-      debug(`The server it's up in http://localhost:${port}`);
-      resolve();
-    });
+const app = express();
 
-    server.on("error", (error) => {
-      debug(`Oh no the server couldn't start ${error.message}`);
-      reject();
-    });
-  });
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
 
-module.exports = startServer;
+module.exports = app;
