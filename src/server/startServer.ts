@@ -1,7 +1,13 @@
-const debug = require("debug")("painting-app:serverStart");
+import { Request, Response } from "express";
+import Debug from "debug";
+
+const debug = Debug("painting-app:serverStart");
 
 const startServer = (app: any, port: number) =>
   new Promise<void>((resolve, reject): void => {
+    app.get("*", (req: Request, res: Response) => {
+      res.send("Not found");
+    });
     const server = app.listen(port, () => {
       debug(`The server it's up in http://localhost:${port}`);
       resolve();
@@ -13,4 +19,4 @@ const startServer = (app: any, port: number) =>
     });
   });
 
-module.exports = startServer;
+export default startServer;

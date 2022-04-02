@@ -1,6 +1,7 @@
-const { default: mongoose } = require("mongoose");
-export {};
-const debug = require("debug")("painting-app:database");
+import mongoose from "mongoose";
+import Debug from "debug";
+
+const debug = Debug("painting-app:database");
 
 const connectDataBase = (connectionString: string) =>
   new Promise<void>((resolve, reject) => {
@@ -10,9 +11,10 @@ const connectDataBase = (connectionString: string) =>
         reject(error);
         return;
       }
+      console.log("I know this shit workds");
       debug("Database connected");
       resolve();
     });
   });
 
-module.exports = connectDataBase;
+export default connectDataBase;
