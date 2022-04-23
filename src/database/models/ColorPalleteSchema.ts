@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 const PaletteSchema = new Schema({
   name: String,
   colors: [String],
+  colorTemperature: String,
 });
 
 const ColorPaletteModel = model(
@@ -10,4 +11,4 @@ const ColorPaletteModel = model(
   PaletteSchema,
   "ColorsPalette"
 );
-module.exports = ColorPaletteModel;
+export default ColorPaletteModel;
